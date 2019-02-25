@@ -45,6 +45,15 @@ server.post('/api/login', (req, res) => {
         .catch(error => {
             res.status(500).json(error);
         });
+});
+
+server.get('/api/users', (req, res) => {
+    try {
+        const users = Users.find();
+        res.json(users);
+    } catch(error) {
+        res.send(error);
+    }
 })
 
 const port = 5000;
