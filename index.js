@@ -3,6 +3,9 @@ const helmet = require('helmet');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
+const KnexSessionStore = require('connect-session-knex');
+
+KnexSessionStore(session);
 
 // const db = require('./dbConfig');
 const Users = require('./usersDb');
@@ -78,6 +81,18 @@ server.get('/api/users', restrict, (req, res) => {
             res.json(users);
         })
         .catch(err => res.send(err));
+})
+
+server.get('/api/logout', (req, res) => {
+    if(req.session) {
+        req.session.destroy(err => {
+            if (err){
+                res.send('Goodbye sweet world');
+            } else {
+                res.end();
+            }
+        })
+    }
 })
 
 const port = 5000;
