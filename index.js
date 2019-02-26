@@ -87,9 +87,11 @@ server.get('/api/logout', (req, res) => {
             if (err){
                 res.send('Goodbye sweet world');
             } else {
-                res.end();
+                res.send('its been real thanks');
             }
         })
+    } else {
+        res.end();
     }
 })
 
