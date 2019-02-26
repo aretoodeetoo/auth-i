@@ -33,7 +33,7 @@ const sessionConfig = {
 server.use(helmet());
 server.use(express.json());
 server.use(cors());
-server.use(session(sessionConfig));
+server.use(session(sessionConfig)); 
 
 
 server.get('/', (req, res) => {
